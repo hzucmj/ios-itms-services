@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>按钮列表</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <body class="bg-gray-50 min-h-screen flex items-center justify-center p-4">
     <div class="max-w-3xl w-full bg-white rounded-xl shadow-md p-8 md:p-10">
         <h1 class="text-2xl md:text-3xl font-bold text-center text-gray-800 mb-8">推流App测试</h1>
@@ -17,9 +19,9 @@
     <script>
         // 按钮配置 - 可以通过修改此配置动态更改按钮
         const buttonConfig = [
-            { title: "开发服", link: "", disabled: false },
-            { title: "UAT", link: "", disabled: true },
-            { title: "正式服", link: "", disabled: false }
+            { title: "开发服", link: "https://raw.githubusercontent.com/hzucmj/ios-itms-services/refs/heads/master/live/ipa_dev.plist", disabled: false },
+            { title: "UAT", link: "https://raw.githubusercontent.com/hzucmj/ios-itms-services/refs/heads/master/live/ipa_uat.plist", disabled: true },
+            { title: "正式服", link: "https://raw.githubusercontent.com/hzucmj/ios-itms-services/refs/heads/master/live/ipa_pro.plist", disabled: true }
         ];
 
         // 获取按钮容器
@@ -30,7 +32,7 @@
             const buttonElement = document.createElement('a');
             // 设置链接和目标
             if (button.link && !button.disabled) {
-                buttonElement.href = button.link;
+                buttonElement.href = "itms-services://?action=download-manifest&url=" + button.link;
                 buttonElement.target = "_blank";
                 buttonElement.rel = "noopener noreferrer";
             } else {
@@ -47,9 +49,10 @@
             }
             buttonElement.className = buttonClasses;
             buttonElement.textContent = button.title;
-            
+
             buttonContainer.appendChild(buttonElement);
         });
     </script>
 </body>
+
 </html>
